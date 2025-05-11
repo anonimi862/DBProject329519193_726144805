@@ -1,4 +1,4 @@
-
+![0](https://github.com/user-attachments/assets/00fa2d58-442c-4523-9ef5-60f2fdf85bcc)
 
 # ניהול מחסן רכבות - דוח שלב א
 
@@ -77,6 +77,13 @@
 1. קובץ Excel / CSV
 2. סקריפט Python 
 3. שימוש בכלי Mockaroo לייצור קבצי SQL
+
+
+---
+
+תמונות של יצירת הנתונים:
+SQL:
+![image](https://github.com/user-attachments/assets/651f5ec8-1760-4522-af0e-89f7fb1f91c4)
 
 
 ---
