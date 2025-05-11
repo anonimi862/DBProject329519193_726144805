@@ -1,4 +1,3 @@
-![0](https://github.com/user-attachments/assets/00fa2d58-442c-4523-9ef5-60f2fdf85bcc)
 
 # ניהול מחסן רכבות - דוח שלב א
 
@@ -85,6 +84,12 @@
 SQL:
 ![image](https://github.com/user-attachments/assets/651f5ec8-1760-4522-af0e-89f7fb1f91c4)
 ![unnamed](https://github.com/user-attachments/assets/ba700110-bd4e-4464-b64c-43c87aebc927)
+
+Python:
+![0](https://github.com/user-attachments/assets/2eaedb5b-9e61-41ba-b5c9-dc3ca3b2ea41)
+
+Excel / CSV:
+![image](https://github.com/user-attachments/assets/cadc9a1a-193f-42e2-b639-20c0ec68aa91)
 
 
 ---
