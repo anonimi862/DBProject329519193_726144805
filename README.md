@@ -80,7 +80,9 @@
 
 ---
 
+
 תמונות של יצירת הנתונים:
+
 SQL:
 ![image](https://github.com/user-attachments/assets/651f5ec8-1760-4522-af0e-89f7fb1f91c4)
 ![unnamed](https://github.com/user-attachments/assets/ba700110-bd4e-4464-b64c-43c87aebc927)
