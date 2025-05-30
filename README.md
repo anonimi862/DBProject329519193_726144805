@@ -100,3 +100,167 @@ Excel / CSV:
 
 
 --
+
+בהתאם להנחיות של שלב ב’, הנה טיוטה מלאה לחלק המתאים של קובץ ה־`README.md` שתוכל להעלות לגיט, כולל הניסוח בעברית, מבנה מסודר, ומקומות להכנסת צילומי המסך (יש להוסיף את התמונות לתיקיית הפרויקט ולוודא שהשמות נכונים):
+
+---
+
+## שלב ב – שאילתות ועדכונים
+
+### שאילתות SELECT
+
+#### 1. רשימת כל החלקים עם שם הספק, כמות במחסן, ומחסן
+
+**תיאור:** מציגה לכל חלק את שם הספק שמספק אותו, כמה ממנו יש בכל מחסן, ומה מיקומו של המחסן.
+
+```sql
+SELECT p.name AS part_name, s.name AS supplier_name, wp.wQuantity, w.location AS warehouse_location
+FROM Part p
+JOIN SupplierParts sp ON p.part_id = sp.part_id
+JOIN supplier s ON sp.supplier_id = s.supplier_id
+JOIN WarehouseParts wp ON p.part_id = wp.part_id
+JOIN Warehouse w ON wp.warehouse_id = w.warehouse_id;
+```
+
+* **צילום הרצה:**
+  ![](images/select1_run.png)
+
+* **צילום תוצאה (5 שורות):**
+  ![](images/select1_result.png)
+
+#### 2. לקוחות שנרשמו בשנת 2024
+
+**תיאור:** מחזירה את כל הלקוחות שנרשמו למערכת בשנת 2024.
+
+```sql
+SELECT costumer_id, phone, email, registration_date
+FROM Costumer
+WHERE EXTRACT(YEAR FROM registration_date) = 2024;
+```
+
+* **צילום הרצה:**
+  ![](images/select2_run.png)
+
+* **צילום תוצאה:**
+  ![](images/select2_result.png)
+
+(וכך הלאה עבור 6 השאילתות הבאות…)
+
+---
+
+### שאילתות DELETE
+
+#### 1. מחיקת הזמנות לפני 2020
+
+**תיאור:** מוחקת מהטבלה כל הזמנה שהוזנה לפני ה־1 בינואר 2020.
+
+```sql
+DELETE FROM myorder WHERE order_date < '2020-01-01';
+```
+
+* **צילום בסיס הנתונים לפני:**
+  ![](images/delete1_before.png)
+
+* **צילום הרצה:**
+  ![](images/delete1_run.png)
+
+* **צילום בסיס הנתונים אחרי:**
+  ![](images/delete1_after.png)
+
+(וכן לשתי השאילתות הנוספות)
+
+---
+
+### שאילתות UPDATE
+
+#### 1. עדכון מחיר חלק מסוים אצל ספק מסוים
+
+**תיאור:** מעלה ב־10% את המחיר של חלק מסוים אצל ספק מסוים.
+
+```sql
+UPDATE SupplierParts
+SET price = price * 1.10
+WHERE part_id = 1 AND supplier_id = 1;
+```
+
+* **צילום לפני העדכון:**
+  ![](images/update1_before.png)
+
+* **צילום הרצה:**
+  ![](images/update1_run.png)
+
+* **צילום אחרי העדכון:**
+  ![](images/update1_after.png)
+
+(וכן לשני העדכונים הנוספים)
+
+---
+
+### אילוצים (Constraints)
+
+#### 1. CHECK על טבלת עובדים
+
+**תיאור:** מוודא ששנת ההתחלה של העובד לא בעתיד.
+
+```sql
+ALTER TABLE employee
+ADD CONSTRAINT chk_start_date CHECK (start_date <= CURRENT_DATE);
+```
+
+* **ניסיון הכנסת תאריך עתידי:**
+
+  ```sql
+  INSERT INTO employee (employee_id, name, role, start_date)
+  VALUES (999, 'שגיאה', 'בדיקה', '2099-01-01');
+  ```
+
+* **צילום שגיאת הרצה:**
+  ![](images/constraint1_error.png)
+
+(וכן לשני האילוצים הנוספים)
+
+---
+
+### Rollback ו־Commit
+
+#### דוגמה עם ROLLBACK
+
+**תיאור:** עדכון זמני בקיבולת מחסן וביטולו.
+
+```sql
+BEGIN;
+UPDATE Warehouse SET capacity = capacity + 1000 WHERE warehouse_id = 1;
+SELECT * FROM Warehouse WHERE warehouse_id = 1;
+ROLLBACK;
+SELECT * FROM Warehouse WHERE warehouse_id = 1;
+```
+
+* **לפני העדכון:**
+  ![](images/rollback_before.png)
+
+* **אחרי עדכון (לפני rollback):**
+  ![](images/rollback_mid.png)
+
+* **אחרי rollback:**
+  ![](images/rollback_after.png)
+
+#### דוגמה עם COMMIT
+
+**תיאור:** עדכון קיבולת למחסן ושמירה קבועה של העדכון.
+
+```sql
+BEGIN;
+UPDATE Warehouse SET capacity = capacity + 300 WHERE warehouse_id = 2;
+COMMIT;
+```
+
+* **לפני העדכון:**
+  ![](images/commit_before.png)
+
+* **אחרי commit:**
+  ![](images/commit_after.png)
+
+---
+
+אם תרצה שאכין עבורך שלד עם קישורי תמונות מדויקים (או אפילו דף README.md מלא עם פקודות `git add` וכו') – אשמח להכין.
+
