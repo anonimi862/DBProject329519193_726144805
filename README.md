@@ -586,11 +586,6 @@ ERROR: Train 999 is OVERDUE for maintenance by 45 days! Operation suspended.
 
 ## תוכניות ראשיות
 
-### תוכנית ראשית 1: WarehouseAnalysis
-**תיאור**: תוכנית מקיפה לניתוח מחסנים. התוכנית מפעילה את הפונקציה AnalyzeWarehouseOperations ואת הפרוצדורה ProcessPendingOrders.
-
-**
-## תוכניות ראשיות (המשך)
 
 ### תוכנית ראשית 1: WarehouseAnalysis
 **תיאור**: תוכנית מקיפה לניתוח מחסנים. התוכנית מפעילה את הפונקציה AnalyzeWarehouseOperations ואת הפרוצדורה ProcessPendingOrders.
